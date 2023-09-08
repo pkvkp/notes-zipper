@@ -1,0 +1,14 @@
+.accordion-button{
+    border: none;
+    width: 100%;
+    padding: 0;
+
+}
+
+button:focus{
+    outline: none;
+}
+
+.card-header{
+    border-bottom: none;
+}

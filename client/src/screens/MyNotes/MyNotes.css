@@ -1,0 +1,15 @@
+.card-accordion-body{
+    display: flex;
+    width:100%;
+}
+
+.card-title{
+    color: black;
+    flex: 1;
+    cursor: pointer;
+    align-self: center;
+    font-size: 18px;
+    text-decoration: none;
+    text-align:start;
+    margin:0
+}
