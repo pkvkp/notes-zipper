@@ -23,7 +23,7 @@ app.get('/api/notes',(req,res)=>{
 
 
 
-app.use('/api',userRouter)
+app.use('/api/auth',userRouter)
 
 app.use(notFound)
 app.use(errorHandler)

@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import MainScreen from "../../components/MainScreen";
 import { Accordion, Badge, Button, Card } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import "./MyNotes.css";
 import axios from "axios";
 
 const MyNotes = () => {
   const [notes, setNotes] = useState([]);
+  const {state:{id,email,name}} = useLocation()
+  console.log(id,email,name);
   const deleteHandler = (id) => {
     if (window.confirm("Are you sure?")) {
     }

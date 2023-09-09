@@ -5,7 +5,7 @@ import './MainScreen.css'
 const MainScreen = ({ title, children }) => {
   return (
     <div className="mainback">
-      <Container>
+      <Container >
         <Row>
           <div className="page">
             {title && (
