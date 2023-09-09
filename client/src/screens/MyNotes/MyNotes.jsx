@@ -1,15 +1,26 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import MainScreen from "../../components/MainScreen";
 import { Accordion, Badge, Button, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { notes } from "../../data/notes";
-import './MyNotes.css'
+import "./MyNotes.css";
+import axios from "axios";
 
 const MyNotes = () => {
+  const [notes, setNotes] = useState([]);
   const deleteHandler = (id) => {
     if (window.confirm("Are you sure?")) {
     }
   };
+
+  const fetchData = async () => {
+    const { data } = await axios.get(`${process.env.REACT_APP_API_URL}/notes`);
+
+    setNotes(data);
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   return (
     <MainScreen title="Welcome Back Rakesh KP...">
@@ -19,33 +30,22 @@ const MyNotes = () => {
         </Button>
       </Link>
       {notes.map((note) => (
-        <Accordion>
+        <Accordion key={note._id}>
           <Accordion.Item eventKey="0">
             <Card style={{ margin: 10 }} key={note._id}>
-              <Accordion.Header
-                as={Card.Text}
-                variant="link"
-                eventKey="0"
-                className="m-0"
-               
-              >
-                <Card.Header  className="card-accordion-body">
-                  <span
-                    className="card-title"
-                  >
-                    {note.title}
-                  </span>
+              <Accordion.Header as={Card.Text} variant="link" className="m-0">
+                <Card.Header className="card-accordion-body">
+                  <span className="card-title">{note.title}</span>
                   <div>
-                    <Link to={`/note/${note._id}`}>
-                      <Button>Edit</Button>
+                    <Link to={`/note/${note._id}`} className="btn btn-primary">
+                      Edit
                     </Link>
-                    <Button
-                      variant="danger"
-                      className="mx-2"
+                    <div
+                      className="mx-2 btn btn-danger"
                       onClick={() => deleteHandler(note._id)}
                     >
                       Delete
-                    </Button>
+                    </div>
                   </div>
                 </Card.Header>
               </Accordion.Header>
